@@ -49,12 +49,21 @@ extension InventoriesViewController: UITableViewDataSource {
 
 extension InventoriesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "InventoryCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "InventoryCell", for: indexPath) as! InventoryTableViewCell
+        
+        
+        
         
         let item = inventories[indexPath.row]
         
-        cell.textLabel?.text = item.name
-        cell.detailTextLabel?.text = "x\(item.quantity)"
+        let calendar = Calendar.current
+        let hour = calendar.component(.hour, from: item.date!)
+        let minute = calendar.component(.minute, from: item.date!)
+        let second = calendar.component(.second, from: item.date!)
+        
+        cell.titleLabel.text = item.name
+        cell.quantityLabel.text = "x\(item.quantity)"
+        cell.dateLabel.text = "\(hour):\(minute):\(second)"
         
         return cell
     }
