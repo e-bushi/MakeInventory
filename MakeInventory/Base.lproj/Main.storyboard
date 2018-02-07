@@ -98,7 +98,7 @@
         <!--Add Inventory-->
         <scene sceneID="AaZ-8R-4cl">
             <objects>
-                <viewController hidesBottomBarWhenPushed="YES" id="WqD-ZL-E89" customClass="AddInventoryViewController" customModule="MakeInventory" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddInventoryViewController" hidesBottomBarWhenPushed="YES" useStoryboardIdentifierAsRestorationIdentifier="YES" id="WqD-ZL-E89" customClass="AddInventoryViewController" customModule="MakeInventory" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fyo-6R-xeW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

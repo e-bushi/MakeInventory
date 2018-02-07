@@ -34,6 +34,8 @@ class InventoriesViewController: UIViewController {
             print(error)
         }
     }
+    
+    
 }
 
 
@@ -66,5 +68,33 @@ extension InventoriesViewController: UITableViewDelegate {
         cell.dateLabel.text = "\(hour):\(minute):\(second)"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //get index
+        let row = indexPath.row
+        let item = inventories[row]
+        let addInventoryVC = storyboard?.instantiateViewController(withIdentifier: "AddInventoryViewController") as! AddInventoryViewController
+        addInventoryVC.inventory = item
+        
+        
+        
+        self.navigationController?.pushViewController(addInventoryVC, animated: true)
+        
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let row = indexPath.row
+        let id = stack.privateContext.object(with: inventories[row].objectID)
+        
+        if editingStyle == .delete {
+//            stack.viewContext.delete(id)
+            stack.privateContext.delete(id)
+            
+            inventories.remove(at: row)
+            
+            stack.saveTo(context: stack.privateContext)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 }
